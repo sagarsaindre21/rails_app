@@ -1,0 +1,64 @@
+
+<div class="box record_detail_box">
+  <div class="box-header">
+    <div class="listHeaderContainer">
+      <h3 class="box-title">Listing Articles</h3>
+      <a href="<%= new_article_path %>" class="btn btn-sm btn-flat bg-olive pull-right new_record_button"><i class="fa fa-plus-square"></i> New Article</a>
+    </div>
+  </div><!-- /.box-header -->
+  <div class="box-body no-padding">
+
+    <div class="row">
+      <div class="col-md-6 margin listing-form-control">
+        
+        <%#= search_form_for [@search], class: 'form-inline' do |f| %>
+
+            <%#- locals = {:f => f} %>
+
+            <div class="form-group">
+              <div class="field">
+                <%#= f.text_field :title_cont, placeholder: 'Title', :size => 15, class: 'form-control' %>
+              </div>
+            </div>
+
+
+            <%#= button_to "Search", 'search', class: 'btn btn-sm btn-primary not-cleared' %>
+        <%# end %>
+      </div>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Published</th>
+          <th>Published Date</th>
+          <th>By</th>
+          <th colspan="3" class="text-center">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @collection.each do |article| %>
+          <tr>
+            <td><%= article.title %></td>
+            <td><%#= article.is_published? %></td>
+            <td><%#= article.published_date %></td>
+            <td><%= article.user.email %></td>
+            <td><%= link_to 'Show', article_path(article) %></td>
+            <% if current_user.admin? || current_user == article.user %>
+              <td><%= link_to 'Edit', edit_article_path(article) %></td>
+            <% end %>
+            <% if current_user.admin? %>
+              <td><%= link_to 'delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div><!-- /.box-body -->
+  <%#= paginate @experiment_raw_data %>
+</div><!-- /.box -->
+
+<%#= paginate @collection %>

@@ -1,0 +1,100 @@
+<div class="detailBox">
+    <div class="titleBox">
+      <label>Comment Box</label>
+        <button type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+    <div class="commentBox">
+        
+        <p class="taskDescription">Comments on <%= @article.title %></p>
+    </div>
+    <div class="actionBox">
+        <ul class="commentList">
+          <% @comments.each do |comment| %>
+
+            <li>
+                <div class="commenterImage">
+                  <img src="http://lorempixel.com/50/50/people/6" />
+                </div>
+                <div class="commentText">
+                    <p class=""><%= comment.body %></p> <span class="date sub-text">on <%= comment.updated_at %></span>
+
+                </div>
+            </li>
+          <% end %>  
+           
+        </ul>
+          <%= form_for([@article, @article.comments.build]) do |f| %>
+            <div class="form-group">
+              <%= f.text_field :body, input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'form-control' }  %>
+            </div>
+            <div class="form-group">
+                <%= f.submit "Comment", class: "btn btn-default" %>
+            </div>
+          <% end %>
+    </div>
+</div>
+<style type="text/css">
+	@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+.detailBox {
+    width: 63%;
+    border: 1px solid #bbb;
+    margin: 6%
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}
+</style>

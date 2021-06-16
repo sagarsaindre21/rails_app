@@ -1,0 +1,37 @@
+<header class="site-header"> 
+	<div class="top-line">
+		<div class="container">
+				<div class="row">
+						<div class="col-md-12 col-sm-6 col-xs-6">
+								<p> <span><i class="fa fa-phone"></i><a href="tel:+91 8975049852">+91 8975049852</a></span> <span><i class="fa fa-envelope-o"></i><a href="mailto:sagarsaindre1@gmail.com">sagarsaindre1@gmail.com</a></span> </p>
+						</div>
+				</div>
+		</div>
+</div>
+ 	<nav class="navbar navbar-default">
+		<div class="header-inner">
+				<div class="container">
+						<div class="row">
+								<div class="col-md-12">
+										<div class="brand">
+											<a href="http://www.inforest.com/" title="Example Home" rel="home"><img src="/blog.png" class="" border="0" height="90px;"></a>
+										</div>
+										<nav  id="nav-wrap" class="main-nav"> <a id="toggle-btn" href="#"><i class="fa fa-bars"></i> </a>
+										<ul class="sf-menu">
+												<li class="current"> <a href="/">Home</a> </li>
+												<% if current_user %>
+													<li> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </li>
+												  <li> <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+													<li> <%= link_to 'Blog', articles_path %> </li>
+												<% else %>
+													<li> <%= link_to 'Blog', "/visitors/blogs" %> </li>
+												  <li> <%= link_to 'Sign Up', new_user_registration_path %></li>
+													<li> <%= link_to 'Sign In', new_user_session_path %> </li>
+												<% end %>
+										</ul>
+										</nav> </div>
+						</div>
+				</div>
+		</div>
+</nav>
+</header>

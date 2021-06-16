@@ -1,0 +1,38 @@
+
+<div class="box record_detail_box">
+  <div class="box-header">
+    <div class="listHeaderContainer">
+      <h3 class="box-title">Listing Articles</h3>
+    </div>
+  </div><!-- /.box-header -->
+  <div class="box-body no-padding">
+
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Published</th>
+          <th>Published Date</th>
+          <th>By</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @collection.each do |article| %>
+          <tr>
+            <td><%= article.title %></td>
+            <td><%#= article.is_published? %></td>
+            <td><%#= article.published_date %></td>
+            <td><%= article.user.email %></td>
+            <td><%= link_to 'Show', article_path(article) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div><!-- /.box-body -->
+  <%#= paginate @experiment_raw_data %>
+</div><!-- /.box -->
+
+<%#= paginate @collection %>
